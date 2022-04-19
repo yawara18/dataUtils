@@ -27,13 +27,13 @@ def resizeImage(
 
   ## 入力ディレクトリが存在しない場合強制終了
   assert os.path.isdir(os.path.join(src_dir, 'Annotations')), 'Not found Annotations at {}'.format(src_dir)
-  assert os.path.isdir(os.path.join(src_dir, 'Images')), 'Not found Images at {}'.format(src_dir)
+  assert os.path.isdir(os.path.join(src_dir, ext + 'Images')), 'Not found Images at {}'.format(src_dir)
 
   ## 出力ディレクトリの用意
   if os.path.exists(dst_dir):
       shutil.rmtree(dst_dir)
   xml_dst_dir = os.path.join(dst_dir, "Annotations")
-  img_dst_dir = os.path.join(dst_dir, "Images")
+  img_dst_dir = os.path.join(dst_dir, ext + "Images")
   os.makedirs(xml_dst_dir, exist_ok=True)
   os.makedirs(img_dst_dir, exist_ok=True)
 
@@ -46,7 +46,7 @@ def resizeImage(
 
       ## 画像ファイルが存在しなければスキップ
       file_name = os.path.splitext(os.path.basename(xml_file))[0]
-      jpeg_path = os.path.join(src_dir, "Images", "{}.{}".format(file_name, ext))
+      jpeg_path = os.path.join(src_dir, ext + "Images", "{}.{}".format(file_name, ext))
       if not os.path.exists(jpeg_path):
           print('Not found image file: {} (xml_file: {})'.format(jpeg_path, xml_file))
           continue
@@ -80,12 +80,11 @@ def resizeImage(
       img_dest_path = os.path.join(img_dst_dir, "{}.{}".format(file_name, ext))
       cv2.imwrite(img_dest_path, img_resized)
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=str, default='full_dataset')
     parser.add_argument("--output", type=str, default='resized_dataset')
-    parser.add_argument("--ext", type=str, default='png')
+    parser.add_argument("--ext", type=str, default='PNG')
     parser.add_argument("--width", type=int, default=640)
     parser.add_argument("--height", type=int, default=640)
     args = parser.parse_args()
