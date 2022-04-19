@@ -18,7 +18,6 @@ def loadMapJson(path):
             "id": label_map_dict[key],
             "name": key
         })
-    print(attrDict)
     return attrDict
 
 def XML2JSON(xmlFiles, outputPath, mapPath):
