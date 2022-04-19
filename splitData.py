@@ -24,6 +24,7 @@ def splitData(
 ):
   ## 乱数設定
   if seed:
+    print('split data randomly')
     random.seed(seed)
 
   ## train用とeval用に画像ファイルを分割する
@@ -71,5 +72,4 @@ if __name__ == "__main__":
   parser.add_argument("--seed", type=int, default=None)
   args = parser.parse_args()
 
-  print(args.ratio / 100.)
   splitData(args.input, args.output, args.ext, args.ratio / 100., args.seed)
