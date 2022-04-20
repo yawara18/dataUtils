@@ -15,6 +15,8 @@ def split_batch(srcpath, out, ratio, ext):
     for name in candidates:
         folderpath = os.path.join(srcpath, name)
         if os.path.isdir(folderpath):
+            if folderpath.startswith("GN"):
+                ratio = 90
             splitData(folderpath, out, ext, ratio / 100.) #no random seed
 
 resize_batch('../dataset-20220420', 'resized', 640, 360, 'PNG')
