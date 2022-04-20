@@ -19,5 +19,8 @@ def split_batch(srcpath, out, ratio, ext):
                 ratio = 90
             splitData(folderpath, out, ext, ratio / 100.) #no random seed
 
-resize_batch('../dataset-20220420', 'resized', 640, 360, 'PNG')
-split_batch('../dataset-20220420', 'cache', 60, 'PNG')
+src = '../dataset-20220420'
+resized = 'resized'
+dst = '../cache'
+resize_batch(src, resized, 640, 360, 'PNG')
+split_batch(resized, dst, 60, 'PNG')
