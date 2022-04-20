@@ -75,10 +75,14 @@ def resizeImage(
       ## 画像サイズを修正
       xml_dest_path = os.path.join(xml_dst_dir, "{}.xml".format(file_name))
       xml.write(xml_dest_path, "utf-8")
+      
       img = cv2.imread(jpeg_path)
       img_resized = cv2.resize(img, (width, height))
-      img_dest_path = os.path.join(img_dst_dir, "{}.{}".format(file_name, ext))
+      img_dest_path = os.path.join(img_dst_dir, "{}.{}".format(file_name, ext.lower()))
       cv2.imwrite(img_dest_path, img_resized)
+
+      print('debug', xml_dest_path)
+      print('debug', jpeg_path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
