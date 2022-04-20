@@ -46,7 +46,7 @@ def resizeImage(
 
       ## 画像ファイルが存在しなければスキップ
       file_name = os.path.splitext(os.path.basename(xml_file))[0]
-      jpeg_path = os.path.join(src_dir, ext + "Images", "{}.{}".format(file_name, ext))
+      jpeg_path = os.path.join(src_dir, ext + "Images", "{}.{}".format(file_name, ext.lower()))
       if not os.path.exists(jpeg_path):
           print('Not found image file: {} (xml_file: {})'.format(jpeg_path, xml_file))
           continue
@@ -80,9 +80,6 @@ def resizeImage(
       img_resized = cv2.resize(img, (width, height))
       img_dest_path = os.path.join(img_dst_dir, "{}.{}".format(file_name, ext.lower()))
       cv2.imwrite(img_dest_path, img_resized)
-
-      print('debug', xml_dest_path)
-      print('debug', jpeg_path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

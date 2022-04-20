@@ -57,9 +57,9 @@ def splitData(
   def move_to(set_name, xml_paths):
     for xml_path in tqdm(xml_paths):
       file_name = os.path.splitext(os.path.basename(xml_path))[0]
-      jpeg_path = os.path.join(src_dir, ext+"Images", "{}.{}".format(file_name, ext))
+      jpeg_path = os.path.join(src_dir, ext+"Images", "{}.{}".format(file_name, ext.lower()))
       dst_xml_path = os.path.join(dst_dir, set_name, "Annotations", "{}.xml".format(file_name))
-      dst_img_path = os.path.join(dst_dir, set_name, ext+"Images", "{}.{}".format(file_name, ext))
+      dst_img_path = os.path.join(dst_dir, set_name, ext+"Images", "{}.{}".format(file_name, ext.lower()))
       if os.path.isfile(jpeg_path):
         shutil.copyfile(xml_path, dst_xml_path)
         shutil.copyfile(jpeg_path, dst_img_path)
